@@ -1,0 +1,38 @@
+﻿@model WebAPIContacts.Models.Contact
+
+@{
+    ViewData["Title"] = "Редактировать контакт";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <h2>Редактирование контакта</h2>
+    <form asp-controller="Home" asp-action="Edit" method="post" class="mt-3">
+        <input type="hidden" asp-for="ID" />
+        <div class="mb-3">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FirstName" class="form-label"></label>
+            <input asp-for="FirstName" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label asp-for="MiddleName" class="form-label"></label>
+            <input asp-for="MiddleName" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <input asp-for="Description" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+</div>

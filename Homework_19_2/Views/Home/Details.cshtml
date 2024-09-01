@@ -1,0 +1,41 @@
+﻿@model WebAPIContacts.Models.Contact
+
+@{
+    ViewData["Title"] = "Детали контакта";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Детали контакта</h2>
+    <dl class="row">
+        <dt class="col-sm-4">ID</dt>
+        <dd class="col-sm-8">@Model.ID</dd>
+        <dt class="col-sm-4">Фамилия</dt>
+        <dd class="col-sm-8">@Model.LastName</dd>
+        <dt class="col-sm-4">Имя</dt>
+        <dd class="col-sm-8">@Model.FirstName</dd>
+        <dt class="col-sm-4">Отчество</dt>
+        <dd class="col-sm-8">@Model.MiddleName</dd>
+        <dt class="col-sm-4">Номер телефона</dt>
+        <dd class="col-sm-8">@Model.PhoneNumber</dd>
+        <dt class="col-sm-4">Адрес</dt>
+        <dd class="col-sm-8">@Model.Address</dd>
+        <dt class="col-sm-4">Описание</dt>
+        <dd class="col-sm-8">@Model.Description</dd>
+    </dl>
+    <a href="@Url.Action("Index")" class="btn btn-primary">Вернуться к списку</a>
+    <a href="@Url.Action("Edit", new { id = Model.ID })" class="btn btn-secondary">Редактировать</a>
+    <button type="button" class="btn btn-danger" onclick="deleteContact(@Model.ID)">Удалить</button>
+</div>
+
+<script>
+    function deleteContact(id) {
+        if (confirm('Вы уверены, что хотите удалить этот контакт?')) {
+            $.post('@Url.Action("Delete", "Home")', { id: id }, function (data) {
+                window.location.href = '@Url.Action("Index", "Home")';
+            }).fail(function () {
+                alert('Ошибка при удалении контакта.');
+            });
+        }
+    }
+</script>
